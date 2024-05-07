@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="sale_order_inherit_report" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[hasclass('page')][1]" position="replace">
+
+        </xpath>
+        <xpath expr="//span[@t-field='doc.name']" position="attributes">
+            <attribute name="style">font-size: 50px;</attribute>
+        </xpath>
+
+        <xpath expr="//th[@name='th_priceunit']" position="after">
+            <th name="currency_column">Currency</th>
+        </xpath>
+        <xpath expr="//td[@name='td_priceunit']" position="after">
+            <th name="currency_column"><span t-esc="line.currency_id.symbol"/></th>
+        </xpath>
+    </template>
+
+<!--    <template id="products" inherit_id="website_sale.products">-->
+<!--        <xpath expr="//div[hasclass('o_wsale_product_information')]" position="inside">-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="arkana_training_view_tree" model="ir.ui.view">
+        <field name="name">arkana.training.view.tree</field>
+        <field name="model">arkana.training</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="responsible_id" optional="show"/>
+                <field name="price"/>
+                <field name="total_attendee"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="is_paid" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="currency_id" groups="base.group_multi_currency"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-primary="state == 'approved'"
+                       decoration-danger="state == 'cancel'" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="arkana_training_view_form" model="ir.ui.view">
+        <field name="name">arkana.training.view.form</field>
+        <field name="model">arkana.training</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve" type="object" string="Approve" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-danger" invisible="state == 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                            <field name="trainer_ids" widget="many2many_tags"/>
+                            <field name="is_paid" widget="boolean_toggle" readonly="state != 'draft'"/>
+                            <field name="price" invisible="not is_paid"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="attachment" filename="filename"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="page_attendee_line" string="Attendee Line">
+                            <field name="attendance_line">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="attendee_id"/>
+                                    <field name="payment_state"/>
+                                </tree>
+                            </field>
+
+                            <group>
+                                <group></group>
+                                <group class="oe_subtotal_footer" colspan="2" name="total">
+                                    <field name="total_attendee"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="arkana_training_view_search" model="ir.ui.view">
+        <field name="name">arkana.training.view.search</field>
+        <field name="model">arkana.training</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="company_id"/>
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <separator/>
+                <filter name="start_today" string="Start Today"
+                        domain="[('date_start', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="status" string="Status" domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_arkana_training" model="ir.actions.act_window">
+        <field name="name">Arkana Training</field>
+        <field name="res_model">arkana.training</field>
+        <!--        <field name="view_mode">tree,form,search</field>-->
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="search_view_id" ref="arkana_training_view_search"/>
+    </record>
+
+</odoo>

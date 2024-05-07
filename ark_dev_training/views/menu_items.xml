@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="arkana_training_root" name="Arkana Training" sequence="10">
+
+        <menuitem id="menu_arkana_training" name="Arkana Training" sequence="10"
+                  action="ark_dev_training.action_arkana_training"/>
+
+        <menuitem id="menu_delegation_model" name="Delegation Model" sequence="20">
+            <menuitem id="menu_res_delegation" name="Res Delegation" sequence="10"
+                      action="ark_dev_training.action_res_delegation"/>
+            <menuitem id="menu_res_master" name="Res Master" sequence="20"
+                      action="ark_dev_training.action_res_master"/>
+        </menuitem>
+
+        <menuitem id="menu_sale_order_clone" name="SO Clone" sequence="30"
+                  action="ark_dev_training.action_sale_order_clone"/>
+
+    </menuitem>
+</odoo>

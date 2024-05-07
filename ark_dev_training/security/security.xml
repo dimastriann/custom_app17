@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr.hr_employee_comp_rule" model="ir.rule">
+        <field name="domain_force">[]</field>
+    </record>
+
+<!--    <record id="new_group_hr" model="res.groups">-->
+<!--        <field name="name"/>-->
+<!--    </record>-->
+</odoo>

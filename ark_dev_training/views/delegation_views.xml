@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--  RES DELEGATION VIEWS -->
+    <record id="res_delegation_view_tree" model="ir.ui.view">
+        <field name="name">res.delegation.view.tree</field>
+        <field name="model">res.delegation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="value1"/>
+                <field name="value2"/>
+                <field name="total"/>
+                <field name="active" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_delegation_view_form" model="ir.ui.view">
+        <field name="name">res.delegation.view.form</field>
+        <field name="model">res.delegation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="value1"/>
+                            <field name="value2"/>
+                            <field name="total"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_res_delegation" model="ir.actions.act_window">
+        <field name="name">Res Delegation</field>
+        <field name="res_model">res.delegation</field>
+    </record>
+
+    <!-- RES MASTER VIEWS  -->
+    <record id="res_master_view_tree" model="ir.ui.view">
+        <field name="name">res.master.view.tree</field>
+        <field name="model">res.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="res_delegation_id"/>
+                <field name="user_id"/>
+                <field name="value1"/>
+                <field name="value2"/>
+                <field name="value3"/>
+                <field name="total"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_master_view_form" model="ir.ui.view">
+        <field name="name">res.master.view.form</field>
+        <field name="model">res.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Info">
+                            <field name="name"/>
+                            <field name="res_delegation_id" readonly="1" required="0" invisible="not id"/>
+                            <field name="user_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Compute Section">
+                            <field name="value1"/>
+                            <field name="value2"/>
+                            <field name="value3"/>
+                            <field name="total"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_res_master" model="ir.actions.act_window">
+        <field name="name">Res Master</field>
+        <field name="res_model">res.master</field>
+    </record>
+
+</odoo>
