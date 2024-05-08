@@ -71,9 +71,6 @@ class ArkanaTraining(models.Model):
 
     currency_id = fields.Many2one("res.currency")
     company_id = fields.Many2one("res.company")
-    # res_id_char = fields.Reference()
-    # res_id = fields.Many2oneReference()
-    # partner_related_id = fields.Many2one(related="company_id.partner_id")
 
     # === Automatic Fields === #
     # log access #
