@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_arkana_training_user,arkana.training.user,model_arkana_training,base.group_user,1,1,1,1
+access_arkana_training_line_user,arkana.training.line.user,model_arkana_attendance_line,base.group_user,1,1,1,1
+
+access_res_delegation_user,res.delegation.user,model_res_delegation,base.group_user,1,1,1,1
+access_res_master_user,res.master.user,model_res_master,base.group_user,1,1,1,1
+
+access_sale_order_clone_user,sale.order.clone.user,model_sale_order_clone,base.group_user,1,1,1,1
+
+hr.access_hr_employee_user,hr.employee user,hr.model_hr_employee,hr.group_hr_user,1,1,1,0
+
+access_sale_order_report_user,sale.order.report.user,model_sale_report_wizard,base.group_user,1,1,1,1
